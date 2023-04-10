@@ -1,8 +1,11 @@
 package exercise_1.demo.service;
 
+import exercise_1.demo.model.Customer;
 import exercise_1.demo.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author Igor Grišin
@@ -13,16 +16,16 @@ public class CustomerService {
 
     private final CustomerRepository customerRepository;
 
-    @Autowired
     public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
-    public void saveCustomer(){
-        int number = 29;
-        if(number > 25) {
-            System.out.println("Exercise is working");
-            customerRepository.saveCustomer();
-        }
+
+    public void registerCustomer(Customer customer){
+        customerRepository.save(customer);
     }
 
+    public List<Customer> getAllCustomers(){
+       return customerRepository.findAll();
+
+    }
 }
